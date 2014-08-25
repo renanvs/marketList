@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self navigationController] setNavigationBarHidden:YES];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -49,5 +50,6 @@
     [[ListManager sharedInstance] setCurrentList:listModel];
     [self pushInNavigationControllerThisControllerName:SBList];
 }
+
 
 @end
