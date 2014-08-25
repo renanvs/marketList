@@ -1,0 +1,27 @@
+//
+//  CategoryModel.h
+//  marketList
+//
+//  Created by renan veloso silva on 8/24/14.
+//  Copyright (c) 2014 renanvs. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class ItemModel;
+
+@interface CategoryModel : NSManagedObject
+
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSSet *itens;
+@end
+
+@interface CategoryModel (CoreDataGeneratedAccessors)
+
+- (void)addItensObject:(ItemModel *)value;
+- (void)removeItensObject:(ItemModel *)value;
+- (void)addItens:(NSSet *)values;
+- (void)removeItens:(NSSet *)values;
+
+@end
