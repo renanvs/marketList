@@ -23,9 +23,14 @@
     return self;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    originalScrollViewRect = scrollView.frame;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addObservers];
     [[self navigationController] setNavigationBarHidden:YES];
     
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
@@ -38,7 +43,25 @@
     priceLabel.inputAccessoryView = numberToolbar;
     
     autoCompleteView = [Utils loadNibForName:@"AutoCompleteView"];
+    
     // Do any additional setup after loading the view.
+}
+
+-(void)addObservers{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidAppear:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+-(void)keyboardDidAppear:(NSNotification*)notification{
+    CGRect keyboardRect = keyboardRect(notification);
+    CGRect newRect = scrollView.frame;
+    newRect.size.height = newRect.size.height - keyboardRect.size.height;
+    scrollView.frame = newRect;
+    scrollView.contentSize = originalScrollViewRect.size;
+}
+
+-(void)keyboardDidHide:(NSNotification*)notification{
+    scrollView.frame = originalScrollViewRect;
 }
 
 - (void)didReceiveMemoryWarning

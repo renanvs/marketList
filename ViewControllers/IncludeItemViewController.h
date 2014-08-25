@@ -20,7 +20,9 @@
     __weak IBOutlet UITextField *brandLabel;
     __weak IBOutlet UIImageView *categoryImage;
     __weak IBOutlet UILabel *categoryLabel;
+    __weak IBOutlet UIScrollView *scrollView;
     AutoCompleteView *autoCompleteView;
+    CGRect originalScrollViewRect;
 }
 - (IBAction)back:(id)sender;
 - (IBAction)saveUpdateAction:(id)sender;
