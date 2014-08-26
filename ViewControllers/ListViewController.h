@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IncludeItemViewController.h"
 
 @interface ListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>{
     

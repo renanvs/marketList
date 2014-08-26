@@ -9,7 +9,7 @@
 #import "DevCustomSettings.h"
 
 @implementation DevCustomSettings
-@synthesize useFakeSpentItens, fakeList;
+@synthesize useFakeSpentItens, fakeSpentItens, useFakeCategories, fakeCategories;
 
 SynthensizeSingleTon(DevCustomSettings)
 
@@ -26,6 +26,10 @@ SynthensizeSingleTon(DevCustomSettings)
 -(void)startDev{
     if (useFakeSpentItens) {
         [self createFakeSpentItensMethod];
+    }
+    
+    if (useFakeCategories) {
+        [self createFakeCategories];
     }
 }
 
@@ -46,6 +50,7 @@ SynthensizeSingleTon(DevCustomSettings)
     spent1.item = item1;
     spent1.quantity = @3;
     spent1.valueUnity = @1.20;
+    spent1.type = SpentTypeUnique;
     
     ItemModel *item2 = [ItemModel MR_createInContext:ctx];
     item2.name = @"Leite";
@@ -56,6 +61,7 @@ SynthensizeSingleTon(DevCustomSettings)
     spent2.item = item2;
     spent2.quantity = @12;
     spent2.valueUnity = @2.70;
+    spent2.type = SpentTypeUnique;
     
     ItemModel *item3 = [ItemModel MR_createInContext:ctx];
     item3.name = @"Creme Leite";
@@ -66,8 +72,57 @@ SynthensizeSingleTon(DevCustomSettings)
     spent3.item = item3;
     spent3.quantity = @1;
     spent3.valueUnity = @0.50;
+    spent3.type = SpentTypeUnique;
     
-    fakeList = [[NSArray alloc] initWithObjects:spent1, spent2, spent3, nil];
+    ItemModel *item4 = [ItemModel MR_createInContext:ctx];
+    item4.name = @"Presunto";
+    item4.brand = brand;
+    item4.category = category;
+    
+    SpentItemModel *spent4 = [SpentItemModel MR_createInContext:ctx];
+    spent4.item = item4;
+    spent4.quantityGrams = @300;
+    spent4.valueKg = @5;
+    spent4.type = SpentTypeWeight;
+    
+    ItemModel *item5 = [ItemModel MR_createInContext:ctx];
+    item5.name = @"Queijo";
+    item5.brand = brand;
+    item5.category = category;
+    
+    SpentItemModel *spent5 = [SpentItemModel MR_createInContext:ctx];
+    spent5.item = item5;
+    spent5.quantityGrams = @500;
+    spent5.valueKg = @10;
+    spent5.type = SpentTypeWeight;
+    
+    
+    fakeSpentItens = [[NSArray alloc] initWithObjects:spent1, spent2, spent3, spent4, spent5, nil];
+}
+
+
+-(void)createFakeCategories{
+    NSManagedObjectContext *ctx = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    CategoryModel *c0 = [CategoryModel MR_createInContext:ctx];
+    c0.name = @"alimento";
+    
+    CategoryModel *c1 = [CategoryModel MR_createInContext:ctx];
+    c1.name = @"fruta";
+    
+    CategoryModel *c2 = [CategoryModel MR_createInContext:ctx];
+    c2.name = @"legume";
+    
+    CategoryModel *c3 = [CategoryModel MR_createInContext:ctx];
+    c3.name = @"limpeza";
+    
+    CategoryModel *c4 = [CategoryModel MR_createInContext:ctx];
+    c4.name = @"banho";
+    
+    CategoryModel *c5 = [CategoryModel MR_createInContext:ctx];
+    c5.name = @"carro";
+    
+    fakeCategories = [[NSArray alloc] initWithObjects:c0, c1, c2, c3, c4, c5, nil];
 }
 
 @end

@@ -32,7 +32,7 @@
     currentList = [[ListManager sharedInstance] currentList];
 
     if ([[DevCustomSettings sharedInstance] useFakeSpentItens]) {
-        NSArray *tempList = [[DevCustomSettings sharedInstance] fakeList];
+        NSArray *tempList = [[DevCustomSettings sharedInstance] fakeSpentItens];
         [currentList addSpentItens:[NSSet setWithArray:tempList]];
     }
     
@@ -76,7 +76,9 @@
 }
 
 - (IBAction)IncludeItem:(id)sender {
-    [self pushInNavigationControllerThisControllerName:SBIncludeItem];
+//    IncludeItemViewController *ivc =  (IncludeItemViewController*)[self loadStoryBoardViewControllerWithName:@"IncludeItemViewController"];
+//    ivc.currentList = currentList;
+//    [self pushInNavigationControllerThisController:ivc];
 }
 
 - (IBAction)saveAction:(id)sender {
@@ -91,13 +93,17 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellItemList];
+    SpentItemModel *spentItem = [spentList objectAtIndex:indexPath.row];
+    
+    NSString *cellIdentifier = [spentItem.type isEqualToString:SpentTypeUnique] ? CellItemUnityList : CellItemWeightList;
+    
+    ListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (!cell) {
-        cell = [Utils loadNibForName:CellItemList];
+        cell = [Utils loadNibForName:cellIdentifier];
     }
     
-    [cell setSpentItem:[spentList objectAtIndex:indexPath.row]];
+    [cell setSpentItem:spentItem];
     
     return cell;
 }
@@ -110,7 +116,8 @@
     if (cellHeight > 0) {
         return cellHeight;
     }
-    ListItemCell *cell = [Utils loadNibForName:CellItemList];
+    
+    ListItemCell *cell = [Utils loadNibForName:CellItemUnityList];
     CGRect frame = cell.frame;
     cellHeight = frame.size.height;
     return cellHeight;
@@ -119,6 +126,13 @@
 -(void)viewWillAppear:(BOOL)animated{
     listName.text = currentList.name;
     spentList = [[NSArray alloc] initWithArray:[currentList.spentItens allObjects]];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"SBIitem"]) {
+        IncludeItemViewController *ivc = segue.destinationViewController;
+        ivc.currentList = currentList;
+    }
 }
 
 @end

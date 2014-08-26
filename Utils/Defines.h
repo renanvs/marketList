@@ -12,7 +12,11 @@
 #define SBList @"ListSB"
 #define SBPending @"PendingSB"
 
-#define CellItemList @"ListItemCell"
+#define CellItemUnityList @"ListUnityItemCell"
+#define CellItemWeightList @"ListWeightItemCell"
+
+#define SpentTypeUnique @"spentTypeUnique"
+#define SpentTypeWeight @"spentTypeWeight"
 
 @interface Defines : NSObject
 

@@ -8,26 +8,59 @@
 
 #import <UIKit/UIKit.h>
 #import "AutoCompleteView.h"
+#import "UnityForm.h"
+#import "WeightForm.h"
+#import "CategorySelectorView.h"
 
-@interface IncludeItemViewController : UIViewController<UITextFieldDelegate>{
+typedef enum {
+    PriceTypeUnity,
+    PriceTypeWeight,
+} PriceType;
+
+@interface IncludeItemViewController : UIViewController<UITextFieldDelegate, CategorySelectorViewDelegate>{
     
     __weak IBOutlet UIButton *saveUpdateButton;
+    
+    __weak IBOutlet UIButton *unityButton;
+    __weak IBOutlet UIButton *weigthButton;
+    
     __weak IBOutlet UITextField *productNameLabel;
-    __weak IBOutlet UITextField *quantityLabel;
-    __weak IBOutlet UIButton *decreaseQuantityButton;
-    __weak IBOutlet UIButton *increaseQuantityButton;
-    __weak IBOutlet UITextField *priceLabel;
+    
     __weak IBOutlet UITextField *brandLabel;
     __weak IBOutlet UIImageView *categoryImage;
     __weak IBOutlet UILabel *categoryLabel;
     __weak IBOutlet UIScrollView *scrollView;
+    
+    __weak IBOutlet UIView *priceTypeContainer;
+    
+    UnityForm *unityForm;
+    WeightForm *weightForm;
+    
+    CategorySelectorView *categorySelectorView;
+    
+    ListItensModel *currentList;
+    
     AutoCompleteView *autoCompleteView;
     CGRect originalScrollViewRect;
+    
+    PriceType priceType;
+    
+    SpentItemModel *spentItem;
+    CategoryModel *currentCategory;
+    ItemModel *currentItemModel;
+    BrandModel *currentBrandModel;
+    
+    BOOL canSave;
+    
+    NSManagedObjectContext *ctx;
 }
+
+@property (nonatomic) ListItensModel *currentList;
+
 - (IBAction)back:(id)sender;
 - (IBAction)saveUpdateAction:(id)sender;
-- (IBAction)decreaseQuantityAction:(id)sender;
-- (IBAction)increaseQuantityAction:(id)sender;
 - (IBAction)chooseCategory:(id)sender;
+
+- (IBAction)changePriceType:(id)sender;
 
 @end

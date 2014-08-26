@@ -2,7 +2,7 @@
 //  ItemModel.h
 //  marketList
 //
-//  Created by renan veloso silva on 8/24/14.
+//  Created by renanvs on 8/26/14.
 //  Copyright (c) 2014 renanvs. All rights reserved.
 //
 

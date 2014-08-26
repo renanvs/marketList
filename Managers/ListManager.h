@@ -20,4 +20,8 @@
 +(ListItensModel*)createListWithTitle:(NSString*)title;
 +(void)save;
 -(NSArray*)validateIfItensIsApproved;
+-(NSArray*)getAllCategories;
+
+-(CategoryModel*)getDefaultCategory;
+
 @end

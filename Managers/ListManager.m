@@ -18,9 +18,19 @@ SynthensizeSingleTon(ListManager)
     
     if (self) {
         
+        CategoryModel *defaultCategory = [self getDefaultCategory];
+        if (!defaultCategory) {
+            defaultCategory = [CategoryModel MR_createInContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+        }
+        
     }
     
     return self;
+}
+
+-(CategoryModel*)getDefaultCategory{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == 'Outros'"];
+    return [[CategoryModel MR_findAllWithPredicate:predicate] lastObject];
 }
 
 +(ListItensModel*)createListWithTitle:(NSString*)title{
@@ -45,6 +55,18 @@ SynthensizeSingleTon(ListManager)
         if (spentItem.quantity <= 0 || spentItem.valueUnity == 0 || spentItem.item.category == nil) {
             [_list addObject:spentItem];
         }
+    }
+    
+    return _list;
+}
+
+-(NSArray *)getAllCategories{
+    NSArray *_list = nil;
+    
+    if ([[DevCustomSettings sharedInstance] useFakeCategories]) {
+        _list = [[DevCustomSettings sharedInstance] fakeCategories];
+    }else{
+        _list = [CategoryModel MR_findAll];
     }
     
     return _list;

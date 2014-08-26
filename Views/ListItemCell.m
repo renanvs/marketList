@@ -37,18 +37,28 @@
     categoryImage.image = [UIImage imageNamed:@"sample_food"];
     categoryLabel.text = _spentItem.item.category.name;
     
-    priceUnityLabel.text = [NSString stringWithFormat:@"R$ %.2f", [_spentItem.valueUnity floatValue]];
-    totalPriceLabel.text = [NSString stringWithFormat:@"R$ %.2f", ([_spentItem.valueUnity floatValue]*[_spentItem.quantity floatValue])];
-    brandLabel.text = _spentItem.item.brand.name;
-    
-    NSString *quantityStr = nil;
-    if ([_spentItem.quantity integerValue]> 1) {
-        quantityStr = [NSString stringWithFormat:@"%@ unidades", [_spentItem.quantity stringValue]];
+    if ([_spentItem.type isEqualToString:SpentTypeUnique]) {
+        priceUnityLabel.text = [NSString stringWithFormat:@"R$ %.2f", [_spentItem.valueUnity floatValue]];
+        totalPriceLabel.text = [NSString stringWithFormat:@"R$ %.2f", ([_spentItem.valueUnity floatValue]*[_spentItem.quantity floatValue])];
+        NSString *quantityStr = nil;
+        if ([_spentItem.quantity integerValue]> 1) {
+            quantityStr = [NSString stringWithFormat:@"%@ unidades", [_spentItem.quantity stringValue]];
+        }else{
+            quantityStr = [NSString stringWithFormat:@"%@ unidade", [_spentItem.quantity stringValue]];
+        }
+        quantityLabel.text = quantityStr;
     }else{
-        quantityStr = [NSString stringWithFormat:@"%@ unidade", [_spentItem.quantity stringValue]];
+        priceKg.text = [NSString stringWithFormat:@"R$ %.2f", [_spentItem.valueKg floatValue]];
+        
+        float gramsSpent = ([_spentItem.valueKg floatValue] * [_spentItem.quantityGrams floatValue])/1000;
+        priceGramsSpent.text = [NSString stringWithFormat:@"R$ %.2f", gramsSpent];
+        
+        totalGrams.text = [NSString stringWithFormat:@"%@ gramas", [_spentItem.quantityGrams stringValue]];
+        
     }
     
-    quantityLabel.text = quantityStr;
+    brandLabel.text = _spentItem.item.brand.name;
+    
 }
 
 @end

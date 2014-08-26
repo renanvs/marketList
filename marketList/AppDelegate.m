@@ -16,6 +16,7 @@
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"MarketBase.sqlite"];
     
     [[DevCustomSettings sharedInstance] setUseFakeSpentItens:YES];
+    [[DevCustomSettings sharedInstance] setUseFakeCategories:YES];
     [[DevCustomSettings sharedInstance] startDev];
 
     

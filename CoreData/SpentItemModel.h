@@ -2,7 +2,7 @@
 //  SpentItemModel.h
 //  marketList
 //
-//  Created by renan veloso silva on 8/24/14.
+//  Created by renanvs on 8/26/14.
 //  Copyright (c) 2014 renanvs. All rights reserved.
 //
 
@@ -15,6 +15,9 @@
 
 @property (nonatomic, retain) NSNumber * quantity;
 @property (nonatomic, retain) NSNumber * valueUnity;
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSNumber * valueKg;
+@property (nonatomic, retain) NSNumber * quantityGrams;
 @property (nonatomic, retain) ItemModel *item;
 @property (nonatomic, retain) ListItensModel *listItens;
 

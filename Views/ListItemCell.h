@@ -13,10 +13,15 @@
     __weak IBOutlet UILabel *nameLabel;
     __weak IBOutlet UIImageView *categoryImage;
     __weak IBOutlet UILabel *categoryLabel;
+    __weak IBOutlet UILabel *brandLabel;
+    
+    __weak IBOutlet UILabel *totalPriceLabel;
     __weak IBOutlet UILabel *quantityLabel;
     __weak IBOutlet UILabel *priceUnityLabel;
-    __weak IBOutlet UILabel *totalPriceLabel;
-    __weak IBOutlet UILabel *brandLabel;
+    
+    __weak IBOutlet UILabel *totalGrams;
+    __weak IBOutlet UILabel *priceKg;
+    __weak IBOutlet UILabel *priceGramsSpent;
 }
 
 @property (nonatomic) SpentItemModel *spentItem;

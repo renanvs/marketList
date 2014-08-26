@@ -33,7 +33,7 @@
     }
     
     [cell setBackgroundColor:[UIColor greenColor]];
-    cell.textLabel.text = [NSString stringWithFormat:@"index: %i",indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"index: %i",(int)indexPath.row];
     
     return cell;
 }

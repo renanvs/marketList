@@ -59,13 +59,13 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellItemList];
+    //ListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellItemList];
     
-    if (!cell) {
-        cell = [Utils loadNibForName:CellItemList];
-    }
+//    if (!cell) {
+//        cell = [Utils loadNibForName:CellItemList];
+//    }
     
-    return cell;
+    return nil;
 }
 
 @end

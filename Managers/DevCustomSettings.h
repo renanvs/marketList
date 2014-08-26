@@ -10,11 +10,15 @@
 
 @interface DevCustomSettings : NSObject{
     BOOL useFakeSpentItens;
-    NSArray *fakeList;
+    BOOL useFakeCategories;
+    NSArray *fakeSpentItens;
+    NSArray *fakeCategories;
 }
 
 @property (nonatomic) BOOL useFakeSpentItens;
-@property (nonatomic, strong) NSArray *fakeList;
+@property (nonatomic) BOOL useFakeCategories;
+@property (nonatomic, strong) NSArray *fakeSpentItens;
+@property (nonatomic, strong) NSArray *fakeCategories;
 
 +(id)sharedInstance;
 
