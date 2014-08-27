@@ -50,6 +50,12 @@
 		DB882A2C19AAC85A00545811 /* PendingItensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB882A2B19AAC85A00545811 /* PendingItensViewController.m */; };
 		DB882A2F19AACEB300545811 /* DevCustomSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DB882A2E19AACEB300545811 /* DevCustomSettings.m */; };
 		DB882A3219AADC7300545811 /* sample_food.png in Resources */ = {isa = PBXBuildFile; fileRef = DB882A3119AADC7300545811 /* sample_food.png */; };
+		DBA3BA2C19AD7628004F122B /* market_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA3BA2A19AD7628004F122B /* market_icon.png */; };
+		DBA3BA2D19AD7628004F122B /* checklist_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA3BA2B19AD7628004F122B /* checklist_icon.png */; };
+		DBA3BA2F19AD76B6004F122B /* check_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA3BA2E19AD76B6004F122B /* check_icon.png */; };
+		DBA3BA3119AD7718004F122B /* check_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = DBA3BA3019AD7718004F122B /* check_icon2.png */; };
+		DBA3BA3419AD7945004F122B /* ListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA3BA3319AD7945004F122B /* ListsViewController.m */; };
+		DBA3BA3719AD7B30004F122B /* ListsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA3BA3619AD7B30004F122B /* ListsTableViewCell.m */; };
 		DBD9BC3519AA55A800EE6F33 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC3419AA55A800EE6F33 /* ListViewController.m */; };
 		DBD9BC3819AA5CB800EE6F33 /* IncludeItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC3719AA5CB800EE6F33 /* IncludeItemViewController.m */; };
 		DBD9BC5F19AA620400EE6F33 /* Defines.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC5E19AA620400EE6F33 /* Defines.m */; };
@@ -144,6 +150,14 @@
 		DB882A2D19AACEB300545811 /* DevCustomSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevCustomSettings.h; path = Managers/DevCustomSettings.h; sourceTree = SOURCE_ROOT; };
 		DB882A2E19AACEB300545811 /* DevCustomSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevCustomSettings.m; path = Managers/DevCustomSettings.m; sourceTree = SOURCE_ROOT; };
 		DB882A3119AADC7300545811 /* sample_food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample_food.png; sourceTree = "<group>"; };
+		DBA3BA2A19AD7628004F122B /* market_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = market_icon.png; sourceTree = "<group>"; };
+		DBA3BA2B19AD7628004F122B /* checklist_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checklist_icon.png; sourceTree = "<group>"; };
+		DBA3BA2E19AD76B6004F122B /* check_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon.png; sourceTree = "<group>"; };
+		DBA3BA3019AD7718004F122B /* check_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_icon2.png; sourceTree = "<group>"; };
+		DBA3BA3219AD7945004F122B /* ListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsViewController.h; path = ViewControllers/ListsViewController.h; sourceTree = SOURCE_ROOT; };
+		DBA3BA3319AD7945004F122B /* ListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsViewController.m; path = ViewControllers/ListsViewController.m; sourceTree = SOURCE_ROOT; };
+		DBA3BA3519AD7B30004F122B /* ListsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsTableViewCell.h; path = Views/ListsTableViewCell.h; sourceTree = "<group>"; };
+		DBA3BA3619AD7B30004F122B /* ListsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsTableViewCell.m; path = Views/ListsTableViewCell.m; sourceTree = "<group>"; };
 		DBD9BC3319AA55A800EE6F33 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = ViewControllers/ListViewController.h; sourceTree = SOURCE_ROOT; };
 		DBD9BC3419AA55A800EE6F33 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewController.m; path = ViewControllers/ListViewController.m; sourceTree = SOURCE_ROOT; };
 		DBD9BC3619AA5CB800EE6F33 /* IncludeItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IncludeItemViewController.h; path = ViewControllers/IncludeItemViewController.h; sourceTree = SOURCE_ROOT; };
@@ -315,6 +329,8 @@
 				DBD9BC8119AA694000EE6F33 /* AlertViewControler.h */,
 				DBD9BC8219AA694000EE6F33 /* AlertViewControler.m */,
 				DBD9BC8319AA694000EE6F33 /* AlertViewControler.xib */,
+				DBA3BA3219AD7945004F122B /* ListsViewController.h */,
+				DBA3BA3319AD7945004F122B /* ListsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -375,6 +391,8 @@
 				7276E19919ACE812006D8281 /* CategorySelectorCell.h */,
 				7276E19A19ACE812006D8281 /* CategorySelectorCell.m */,
 				7276E19719ACE79E006D8281 /* CategorySelectorCell.xib */,
+				DBA3BA3519AD7B30004F122B /* ListsTableViewCell.h */,
+				DBA3BA3619AD7B30004F122B /* ListsTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -382,6 +400,10 @@
 		DB882A3019AADC7300545811 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				DBA3BA2E19AD76B6004F122B /* check_icon.png */,
+				DBA3BA3019AD7718004F122B /* check_icon2.png */,
+				DBA3BA2A19AD7628004F122B /* market_icon.png */,
+				DBA3BA2B19AD7628004F122B /* checklist_icon.png */,
 				DB882A3119AADC7300545811 /* sample_food.png */,
 				7276E1AE19ACFA99006D8281 /* close_button.png */,
 			);
@@ -510,9 +532,12 @@
 				DB42945819AA2DCA00386F51 /* Images.xcassets in Resources */,
 				DB882A0219AA7A4C00545811 /* ListUnityItemCell.xib in Resources */,
 				DB42944A19AA2DCA00386F51 /* InfoPlist.strings in Resources */,
+				DBA3BA2C19AD7628004F122B /* market_icon.png in Resources */,
+				DBA3BA2F19AD76B6004F122B /* check_icon.png in Resources */,
 				7276E19619ACE6A2006D8281 /* CategorySelectorView.xib in Resources */,
 				7276E1AF19ACFA99006D8281 /* close_button.png in Resources */,
 				DB882A3219AADC7300545811 /* sample_food.png in Resources */,
+				DBA3BA2D19AD7628004F122B /* checklist_icon.png in Resources */,
 				7276E17B19ACBB3A006D8281 /* WeightForm.xib in Resources */,
 				DBD9BC8519AA694000EE6F33 /* AlertViewControler.xib in Resources */,
 				DB882A0F19AA897100545811 /* AutoCompleteView.xib in Resources */,
@@ -520,6 +545,7 @@
 				7276E19119ACD178006D8281 /* ListWeightItemCell.xib in Resources */,
 				DB42945319AA2DCA00386F51 /* Main.storyboard in Resources */,
 				7276E19819ACE79E006D8281 /* CategorySelectorCell.xib in Resources */,
+				DBA3BA3119AD7718004F122B /* check_icon2.png in Resources */,
 				DB882A1119AA89EE00545811 /* AutoCompleteCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,7 +624,9 @@
 				DB42947719AA326800386F51 /* marketList-Prefix.xcdatamodeld in Sources */,
 				7276E19B19ACE812006D8281 /* CategorySelectorCell.m in Sources */,
 				DBD9BC6219AA631300EE6F33 /* Extensions.m in Sources */,
+				DBA3BA3419AD7945004F122B /* ListsViewController.m in Sources */,
 				7276E1A719ACE929006D8281 /* BrandModel.m in Sources */,
+				DBA3BA3719AD7B30004F122B /* ListsTableViewCell.m in Sources */,
 				DBD9BC3819AA5CB800EE6F33 /* IncludeItemViewController.m in Sources */,
 				DB882A1719AAB67900545811 /* ListManager.m in Sources */,
 				DBD9BC8419AA694000EE6F33 /* AlertViewControler.m in Sources */,
