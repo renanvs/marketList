@@ -15,8 +15,9 @@
     // Override point for customization after application launch.
     [MagicalRecord setupCoreDataStackWithStoreNamed:@"MarketBase.sqlite"];
     
-    [[DevCustomSettings sharedInstance] setUseFakeSpentItens:YES];
+//    [[DevCustomSettings sharedInstance] setUseFakeSpentItens:YES];
     [[DevCustomSettings sharedInstance] setUseFakeCategories:YES];
+//    [[DevCustomSettings sharedInstance] setUseFakeLists:YES];
     [[DevCustomSettings sharedInstance] startDev];
 
     

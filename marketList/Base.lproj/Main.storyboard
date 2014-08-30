@@ -73,7 +73,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="back:" destination="tCP-lZ-Dza" eventType="touchUpInside" id="A9A-7B-gcc"/>
+                                            <action selector="back:" destination="8dk-QH-Qgl" eventType="touchUpInside" id="9tm-iQ-TbK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sbi-u2-kVK">
@@ -83,9 +83,6 @@
                                         <state key="normal" title="Editar">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="saveUpdateAction:" destination="tCP-lZ-Dza" eventType="touchUpInside" id="Szq-Ak-9Jl"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.013950922439999999" green="1" blue="0.88560248050000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,7 +102,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$ 30,00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bWm-0g-mRj">
                                                     <rect key="frame" x="232" y="39" width="69" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista criada em:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dh7-7Y-R6q">
@@ -178,7 +175,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R$ --,--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YVE-AD-7YR">
                                                     <rect key="frame" x="232" y="39" width="69" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista criada em:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="N4Q-xu-jdz">
@@ -233,7 +230,6 @@
                                             <outlet property="SpentItensCount" destination="oeP-2l-iYs" id="C6h-B8-xZQ"/>
                                             <outlet property="date" destination="vVM-TB-b6l" id="ygh-xt-VKZ"/>
                                             <outlet property="listName" destination="Rzb-FR-tK4" id="la7-JJ-oEp"/>
-                                            <outlet property="price" destination="YVE-AD-7YR" id="8wU-Uc-itA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -366,6 +362,7 @@
                         <outlet property="listName" destination="mbL-A6-2WV" id="Wif-tQ-mhV"/>
                         <outlet property="saveButton" destination="oyk-iC-whQ" id="mGL-9f-phO"/>
                         <outlet property="totalLabel" destination="5X3-RW-wip" id="NeX-NK-Qg4"/>
+                        <segue destination="kPF-o8-IFb" kind="push" identifier="SeguePending" id="Sji-bq-jrz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFn-ss-JRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,7 +540,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cvl-N2-dx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1615" y="132"/>
+            <point key="canvasLocation" x="2015" y="118"/>
         </scene>
         <!--Pending Itens View Controller-->
         <scene sceneID="Q7s-Ui-xvR">
@@ -588,10 +585,15 @@
                                 <rect key="frame" x="0.0" y="77" width="320" height="403"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kPF-o8-IFb" id="Hge-0G-1jR"/>
+                                    <outlet property="delegate" destination="kPF-o8-IFb" id="jGg-8M-GSY"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ocI-TY-9dM"/>
                     <connections>
                         <outlet property="leftButton" destination="NR2-IA-qxh" id="unf-rY-65l"/>
                         <outlet property="pendingTableView" destination="pRD-YD-HEk" id="noC-NP-bzo"/>
@@ -600,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVr-4i-PSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="132"/>
+            <point key="canvasLocation" x="2015" y="730"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ct6-PW-cpj">

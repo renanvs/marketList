@@ -17,4 +17,6 @@
     __weak IBOutlet UILabel *marketName;
 }
 
+-(void)setupCellWithListItens:(ListItensModel*)_listItensModel;
+
 @end

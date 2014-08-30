@@ -8,6 +8,7 @@
 
 #import "ListViewController.h"
 #import "ListItemCell.h"
+#import "PendingItensViewController.h"
 
 @interface ListViewController ()
 
@@ -36,6 +37,7 @@
         [currentList addSpentItens:[NSSet setWithArray:tempList]];
     }
     
+    [saveButton setHidden:YES];
     // Do any additional setup after loading the view.
 }
 
@@ -58,7 +60,7 @@
 
 - (IBAction)back:(id)sender {
     if ([currentList.isBuying boolValue]) {
-        [[[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Voce está comprando, para concluir essa lista voce deve apertar compra finalizada ou desativar o compartamento comprando" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Voce está comprando, para concluir essa lista voce deve apertar compra finalizada ou desativar o compartamento comprando" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }else{
         [ListManager save];
         [self.navigationController popViewControllerAnimated:YES];
@@ -69,22 +71,32 @@
     if (![currentList.isBuying boolValue]) {
         [buyingButton setBackgroundColor:[UIColor greenColor]];
         currentList.isBuying = [NSNumber numberWithInt:1];
+        [saveButton setHidden:NO];
     }else{
         [buyingButton setBackgroundColor:[UIColor clearColor]];
         currentList.isBuying = [NSNumber numberWithInt:0];
+        [saveButton setHidden:YES];
     }
 }
 
 - (IBAction)IncludeItem:(id)sender {
-//    IncludeItemViewController *ivc =  (IncludeItemViewController*)[self loadStoryBoardViewControllerWithName:@"IncludeItemViewController"];
-//    ivc.currentList = currentList;
-//    [self pushInNavigationControllerThisController:ivc];
 }
 
 - (IBAction)saveAction:(id)sender {
-    NSArray *_listSpentItens = [[ListManager sharedInstance] validateIfItensIsApproved];
-    if (_listSpentItens.count > 0) {
-        //[self pushInNavigationControllerThisControllerName:<#(NSString *)#>]
+    pendingist = [[ListManager sharedInstance] validateIfItensIsApproved];
+    if (pendingist.count > 0) {
+        [[[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Existem campos que devem ser finalizados em alguns itens" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        //[self performSegueWithIdentifier:@"SeguePending" sender:self];
+    }else{
+        UIAlertView *al = [[UIAlertView alloc] init];
+        al.alertViewStyle = UIAlertViewStylePlainTextInput;
+        al.delegate = self;
+        al.title = @"Estabelecimento";
+        al.message = @"Qual o estabelecimento voce esta comprando";
+        [al addButtonWithTitle:@"OK"];
+        [al addButtonWithTitle:@"Cancelar"];
+        
+        [al show];
     }
 }
 
@@ -109,7 +121,24 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        UITextField *textField = [alertView textFieldAtIndex:0];
+        [self getOrCreateMarketModelWithTitle:textField.text];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
+-(void)getOrCreateMarketModelWithTitle:(NSString*)marketName{
+    NSManagedObjectContext *ctx = [NSManagedObjectContext MR_contextForCurrentThread];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",marketName];
+    MarketModel *_marketModel = [[MarketModel MR_findAllWithPredicate:predicate] lastObject];
+    if (!_marketModel) {
+        _marketModel = [MarketModel MR_createInContext:ctx];
+        _marketModel.name = marketName;
+    }
     
+    [_marketModel addListsItensObject:currentList];
+    [ListManager save];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -123,15 +152,28 @@
     return cellHeight;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    selectedSpentItemModel = [spentList objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"SBIitem" sender:self];
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     listName.text = currentList.name;
-    spentList = [[NSArray alloc] initWithArray:[currentList.spentItens allObjects]];
+    selectedSpentItemModel = nil;
+    spentList = [currentList.spentItens allObjects];
+    [listItemTableView reloadData];
+    NSLog(@"dsfsd");
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"SBIitem"]) {
         IncludeItemViewController *ivc = segue.destinationViewController;
         ivc.currentList = currentList;
+        ivc.spentItemModel = selectedSpentItemModel;
+    }else if([segue.identifier isEqualToString:@"SeguePending"]) {
+        PendingItensViewController *ivc = segue.destinationViewController;
+        ivc.pendingList = pendingist;
     }
 }
 

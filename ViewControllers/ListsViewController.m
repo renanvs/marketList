@@ -36,6 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    spentItemModelLists = [[ListManager sharedInstance] getAllListItensModel];
+}
+
 /*
 #pragma mark - Navigation
 
@@ -48,19 +52,35 @@
 */
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return spentItemModelLists.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *identifier = indexPath.row > 1 ? @"ListsTableViewCell0" : @"ListsTableViewCell1";
+    ListItensModel *_model = [spentItemModelLists objectAtIndex:indexPath.row];
+    NSString *identifier = _model.isBuying ? @"ListsTableViewCell0" : @"ListsTableViewCell1";
     ListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell) {
         cell = [[ListsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    
+    [cell setupCellWithListItens:_model];
+    
     return cell;
     
+}
+
+-(IBAction)back:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ListItensModel *listItensModel = [spentItemModelLists objectAtIndex:indexPath.row];
+    
+    [[ListManager sharedInstance] setCurrentList:listItensModel];
+    
+    [self pushInNavigationControllerThisControllerName:SBList];
 }
 
 @end

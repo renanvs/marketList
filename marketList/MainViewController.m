@@ -28,12 +28,15 @@
 }
 
 - (IBAction)createNewList:(id)sender {
-    alert = [[AlertViewControler alloc] init];
+    alert = [[UIAlertView alloc] init];
+    alert.title = @"www";
+    alert.message = @"Qual o nome da lista;";
+    [alert addButtonWithTitle:@"Ok"];
+    [alert addButtonWithTitle:@"Cancelar"];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     alert.delegate = self;
-    MZFormSheetController *fsc = [[MZFormSheetController alloc] initWithViewController:alert];
-    fsc.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsMoveToTop;
-    fsc.shouldCenterVertically = YES;
-    [fsc presentAnimated:YES completionHandler:nil];
+    
+    [alert show];
 }
 
 -(IBAction)showLists:(id)sender{
@@ -44,11 +47,18 @@
     
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        UITextField *tf = [alert textFieldAtIndex:0];
+        NSString *listTitle = tf.text;
+        ListItensModel *listModel = [ListManager createListWithTitle:listTitle];
+        [[ListManager sharedInstance] setCurrentList:listModel];
+        [self pushInNavigationControllerThisControllerName:SBList];
+    }
+}
+
 -(void)confirmPressed{
-    NSString *listTitle = alert.formText;
-    ListItensModel *listModel = [ListManager createListWithTitle:listTitle];
-    [[ListManager sharedInstance] setCurrentList:listModel];
-    [self pushInNavigationControllerThisControllerName:SBList];
+    
 }
 
 

@@ -23,5 +23,6 @@
 -(NSArray*)getAllCategories;
 
 -(CategoryModel*)getDefaultCategory;
+-(NSArray*)getAllListItensModel;
 
 @end

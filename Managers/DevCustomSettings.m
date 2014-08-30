@@ -9,7 +9,7 @@
 #import "DevCustomSettings.h"
 
 @implementation DevCustomSettings
-@synthesize useFakeSpentItens, fakeSpentItens, useFakeCategories, fakeCategories;
+@synthesize useFakeSpentItens, fakeSpentItens, useFakeCategories, fakeCategories, fakeLists, useFakeLists;
 
 SynthensizeSingleTon(DevCustomSettings)
 
@@ -31,9 +31,18 @@ SynthensizeSingleTon(DevCustomSettings)
     if (useFakeCategories) {
         [self createFakeCategories];
     }
+    
+    if (useFakeLists) {
+        [self createFakeLists];
+    }
 }
 
 -(void)createFakeSpentItensMethod{
+    NSArray *catList = [CategoryModel MR_findAll];
+    if (catList.count > 0) {
+        return;
+    }
+    
     NSManagedObjectContext *ctx = [NSManagedObjectContext MR_contextForCurrentThread];
     
     BrandModel *brand = [BrandModel MR_createInContext:ctx];
@@ -123,6 +132,24 @@ SynthensizeSingleTon(DevCustomSettings)
     c5.name = @"carro";
     
     fakeCategories = [[NSArray alloc] initWithObjects:c0, c1, c2, c3, c4, c5, nil];
+}
+
+-(void)createFakeLists{
+    NSManagedObjectContext *ctx = [NSManagedObjectContext MR_contextForCurrentThread];
+    
+    ListItensModel *list0 = [ListItensModel MR_createInContext:ctx];
+    list0.date = [NSDate date];
+    list0.isBuying = [NSNumber numberWithBool:YES];
+    list0.name = @"Comprado";
+    NSSet *sets = [NSSet setWithArray:fakeSpentItens];
+    [list0 addSpentItens:sets];
+    
+    MarketModel *marketModel = [MarketModel MR_createInContext:ctx];
+    marketModel.name = @"Carrefour";
+    [marketModel addListsItensObject:list0];
+    
+    list0.market = marketModel;
+    
 }
 
 @end

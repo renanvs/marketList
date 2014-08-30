@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UIViewController <AlertViewControlerDelegate>{
-    AlertViewControler *alert;
+@interface MainViewController : UIViewController <UIAlertViewDelegate>{
+    UIAlertView *alert;
 }
 
 - (IBAction)createNewList:(id)sender;

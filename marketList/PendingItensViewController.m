@@ -49,9 +49,11 @@
 */
 
 - (IBAction)leftButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)rigthButtonAction:(id)sender {
+    [[[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Funcionalidade ainda em desenvolvimento" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil]show];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -59,13 +61,30 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //ListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:CellItemList];
+    SpentItemModel *spentItem = [pendingList objectAtIndex:indexPath.row];
     
-//    if (!cell) {
-//        cell = [Utils loadNibForName:CellItemList];
-//    }
+    NSString *cellIdentifier = [spentItem.type isEqualToString:SpentTypeUnique] ? CellItemUnityList : CellItemWeightList;
     
-    return nil;
+    ListItemCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (!cell) {
+        cell = [Utils loadNibForName:cellIdentifier];
+    }
+    
+    [cell setSpentItem:spentItem];
+    
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (cellHeight > 0) {
+        return cellHeight;
+    }
+    
+    ListItemCell *cell = [Utils loadNibForName:CellItemUnityList];
+    CGRect frame = cell.frame;
+    cellHeight = frame.size.height;
+    return cellHeight;
 }
 
 @end

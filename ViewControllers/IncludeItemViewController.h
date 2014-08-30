@@ -50,12 +50,13 @@ typedef enum {
     ItemModel *currentItemModel;
     BrandModel *currentBrandModel;
     
-    BOOL canSave;
-    
     NSManagedObjectContext *ctx;
+    
+    SpentItemModel *spentItemModel;
 }
 
 @property (nonatomic) ListItensModel *currentList;
+@property (nonatomic) SpentItemModel *spentItemModel;
 
 - (IBAction)back:(id)sender;
 - (IBAction)saveUpdateAction:(id)sender;

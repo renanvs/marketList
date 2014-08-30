@@ -14,7 +14,7 @@
 
 @implementation IncludeItemViewController
 
-@synthesize currentList;
+@synthesize currentList, spentItemModel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,32 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     originalScrollViewRect = scrollView.frame;
+    if (spentItemModel) {
+        currentCategory = spentItemModel.item.category;
+        currentItemModel = spentItemModel.item;
+        currentBrandModel = spentItemModel.item.brand;
+        [self populateForm];
+    }
     [self addCorrectPriceView];
+}
+
+-(void)populateForm{
+    productNameLabel.text = spentItemModel.item.name;
+    brandLabel.text = spentItemModel.item.brand.name;
+    categoryImage.image = [UIImage imageNamed:spentItemModel.item.category.imageName];
+    categoryLabel.text = spentItemModel.item.category.name;
+    
+    unityForm.quantityField.text = [spentItemModel.quantity stringValue];
+    weightForm.weightField.text = [spentItemModel.quantityGrams stringValue];
+    weightForm.priceKgField.text = [[spentItemModel valueKg] stringValue];
+    unityForm.priceField.text = [[spentItemModel valueUnity] stringValue];
+    
+    if ([spentItemModel.type isEqualToString:SpentTypeUnique]) {
+        priceType = PriceTypeUnity;
+    }else{
+        priceType = PriceTypeWeight;
+    }
+    
 }
 
 -(void)addCorrectPriceView{
@@ -102,6 +127,8 @@
     
     autoCompleteView = [Utils loadNibForName:@"AutoCompleteView"];
     
+    
+    [autoCompleteView setHidden:YES];
     // Do any additional setup after loading the view.
 }
 
@@ -150,29 +177,39 @@
 }
 
 - (IBAction)saveUpdateAction:(id)sender {
-    spentItem = [self createSpentItem];
+    BOOL _canSave = [self canSave];
     
-    if (canSave) {
-        [currentList addSpentItensObject:spentItem];
+    
+    if (_canSave) {
+        spentItem = [self createSpentItem];
+        if (!spentItemModel) {
+            [currentList addSpentItensObject:spentItem];
+        }
+        
+        [ListManager save];
         [self back:nil];
     }else{
         
-        [[[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Existem campos que devem ser preenchidos" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Nome e/ou categoria devem ser preenchidos" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
     
 }
 
--(SpentItemModel*)createSpentItem{
-    
-    if ([NSString isStringEmpty:productNameLabel.text] || [NSString isStringEmpty:brandLabel.text]) {
-        canSave = NO;
-        return nil;
-    }else{
-        canSave = YES;
+-(BOOL)canSave{
+    if ([NSString isStringEmpty:productNameLabel.text] || [NSString isStringEmpty:categoryLabel.text]) {
+        return NO;
     }
     
+    return YES;
+}
+
+-(SpentItemModel*)createSpentItem{
+    if (spentItemModel) {
+        spentItem = spentItemModel;
+    }else{
+        spentItem = [SpentItemModel MR_createInContext:ctx];
+    }
     
-    spentItem = [SpentItemModel MR_createInContext:ctx];
     if (priceType == PriceTypeUnity) {
         spentItem.type = SpentTypeUnique;
     }else{
@@ -185,10 +222,10 @@
     spentItem.valueUnity = [NSNumber numberWithFloat:[unityForm.priceField.text floatValue]];
     
     if (!currentItemModel) {
-        currentItemModel = [ItemModel MR_createInContext:ctx];
+        currentItemModel = [self getOrCreateItemModel];
         currentItemModel.name = productNameLabel.text;
         if (!currentBrandModel) {
-            currentBrandModel = [BrandModel MR_createInContext:ctx];
+            currentBrandModel = [self getOrCreateBrandModel];
             currentBrandModel.name = brandLabel.text;
         }
         if (!currentCategory) {
@@ -201,10 +238,29 @@
     
     spentItem.item = currentItemModel;
     
-    
-    
-    
     return spentItem;
+}
+
+-(ItemModel*)getOrCreateItemModel{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",productNameLabel.text];
+    ItemModel *_itemModel = [[ItemModel MR_findAllWithPredicate:predicate] lastObject];
+    
+    if (!_itemModel) {
+        _itemModel = [ItemModel MR_createInContext:ctx];
+    }
+    
+    return _itemModel;
+}
+
+-(BrandModel*)getOrCreateBrandModel{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@",brandLabel.text];
+    BrandModel *_brandModel = [[ItemModel MR_findAllWithPredicate:predicate] lastObject];
+    
+    if (!_brandModel) {
+        _brandModel = [BrandModel MR_createInContext:ctx];
+    }
+    
+    return _brandModel;
 }
 
 - (IBAction)chooseCategory:(id)sender {

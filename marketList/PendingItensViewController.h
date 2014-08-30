@@ -15,6 +15,7 @@
     __weak IBOutlet UITableView *pendingTableView;
     
     NSArray *pendingList;
+    float cellHeight;
 }
 
 @property (nonatomic) NSArray *pendingList;

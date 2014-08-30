@@ -10,6 +10,9 @@
 
 @interface ListsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
     __weak IBOutlet UITableView *table;
+    NSArray *spentItemModelLists;
 }
+
+-(IBAction)back:(id)sender;
 
 @end

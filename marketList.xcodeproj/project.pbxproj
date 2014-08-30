@@ -69,8 +69,6 @@
 		DBD9BC7919AA683D00EE6F33 /* UIViewController+TargetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC7219AA683D00EE6F33 /* UIViewController+TargetViewController.m */; };
 		DBD9BC7F19AA688C00EE6F33 /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC7C19AA688C00EE6F33 /* MZAppearance.m */; };
 		DBD9BC8019AA688C00EE6F33 /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC7E19AA688C00EE6F33 /* NSInvocation+Copy.m */; };
-		DBD9BC8419AA694000EE6F33 /* AlertViewControler.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD9BC8219AA694000EE6F33 /* AlertViewControler.m */; };
-		DBD9BC8519AA694000EE6F33 /* AlertViewControler.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBD9BC8319AA694000EE6F33 /* AlertViewControler.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,9 +182,6 @@
 		DBD9BC7C19AA688C00EE6F33 /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
 		DBD9BC7D19AA688C00EE6F33 /* NSInvocation+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Copy.h"; sourceTree = "<group>"; };
 		DBD9BC7E19AA688C00EE6F33 /* NSInvocation+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Copy.m"; sourceTree = "<group>"; };
-		DBD9BC8119AA694000EE6F33 /* AlertViewControler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertViewControler.h; path = ViewControllers/AlertViewControler.h; sourceTree = SOURCE_ROOT; };
-		DBD9BC8219AA694000EE6F33 /* AlertViewControler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlertViewControler.m; path = ViewControllers/AlertViewControler.m; sourceTree = SOURCE_ROOT; };
-		DBD9BC8319AA694000EE6F33 /* AlertViewControler.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertViewControler.xib; path = ViewControllers/AlertViewControler.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,9 +321,6 @@
 				DB882A2B19AAC85A00545811 /* PendingItensViewController.m */,
 				DBD9BC3619AA5CB800EE6F33 /* IncludeItemViewController.h */,
 				DBD9BC3719AA5CB800EE6F33 /* IncludeItemViewController.m */,
-				DBD9BC8119AA694000EE6F33 /* AlertViewControler.h */,
-				DBD9BC8219AA694000EE6F33 /* AlertViewControler.m */,
-				DBD9BC8319AA694000EE6F33 /* AlertViewControler.xib */,
 				DBA3BA3219AD7945004F122B /* ListsViewController.h */,
 				DBA3BA3319AD7945004F122B /* ListsViewController.m */,
 			);
@@ -539,7 +531,6 @@
 				DB882A3219AADC7300545811 /* sample_food.png in Resources */,
 				DBA3BA2D19AD7628004F122B /* checklist_icon.png in Resources */,
 				7276E17B19ACBB3A006D8281 /* WeightForm.xib in Resources */,
-				DBD9BC8519AA694000EE6F33 /* AlertViewControler.xib in Resources */,
 				DB882A0F19AA897100545811 /* AutoCompleteView.xib in Resources */,
 				7276E17D19ACBB5C006D8281 /* UnityForm.xib in Resources */,
 				7276E19119ACD178006D8281 /* ListWeightItemCell.xib in Resources */,
@@ -629,7 +620,6 @@
 				DBA3BA3719AD7B30004F122B /* ListsTableViewCell.m in Sources */,
 				DBD9BC3819AA5CB800EE6F33 /* IncludeItemViewController.m in Sources */,
 				DB882A1719AAB67900545811 /* ListManager.m in Sources */,
-				DBD9BC8419AA694000EE6F33 /* AlertViewControler.m in Sources */,
 				DBD9BC7819AA683D00EE6F33 /* UIImage+Additional.m in Sources */,
 				DB882A0D19AA895D00545811 /* AutoCompleteView.m in Sources */,
 				DB42945019AA2DCA00386F51 /* AppDelegate.m in Sources */,

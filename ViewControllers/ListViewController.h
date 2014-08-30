@@ -19,6 +19,8 @@
     float cellHeight;
     ListItensModel *currentList;
     NSArray *spentList;
+    NSArray *pendingist;
+    SpentItemModel *selectedSpentItemModel;
 }
 - (IBAction)back:(id)sender;
 - (IBAction)buyingAction:(id)sender;

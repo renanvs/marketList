@@ -52,7 +52,7 @@ SynthensizeSingleTon(ListManager)
 -(NSArray*)validateIfItensIsApproved{
     NSMutableArray *_list = [[NSMutableArray alloc] init];
     for (SpentItemModel *spentItem in currentList.spentItens) {
-        if (spentItem.quantity <= 0 || spentItem.valueUnity == 0 || spentItem.item.category == nil) {
+        if ([spentItem.quantity intValue] == 0 || [spentItem.valueUnity floatValue] == 0 || spentItem.item.category == nil) {
             [_list addObject:spentItem];
         }
     }
@@ -69,6 +69,11 @@ SynthensizeSingleTon(ListManager)
         _list = [CategoryModel MR_findAll];
     }
     
+    return _list;
+}
+
+-(NSArray*)getAllListItensModel{
+    NSArray *_list = [ListItensModel MR_findAll];
     return _list;
 }
 
